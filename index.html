@@ -4,23 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akshay Narsipur | Portfolio</title>
-  <meta name="description" content="Portfolio website for Akshay Narsipur" />
+  <meta name="description" content="Interactive portfolio website for Akshay Narsipur" />
   <style>
     :root {
-      --bg: #fffafc;
-      --bg-2: #f4fbff;
-      --surface: rgba(255,255,255,0.82);
-      --surface-strong: rgba(255,255,255,0.94);
-      --border: rgba(124, 58, 237, 0.12);
-      --text: #1e1b4b;
-      --muted: #5b5f7a;
+      --bg: #fff9fb;
+      --bg-2: #eefbff;
+      --surface: rgba(255,255,255,0.78);
+      --surface-strong: rgba(255,255,255,0.92);
+      --border: rgba(99, 102, 241, 0.12);
+      --text: #1f2340;
+      --muted: #5f6482;
       --purple: #7c3aed;
       --pink: #ec4899;
       --cyan: #06b6d4;
       --orange: #f97316;
-      --shadow: 0 20px 50px rgba(124, 58, 237, 0.12);
+      --green: #10b981;
+      --shadow: 0 24px 80px rgba(99, 102, 241, 0.14);
       --radius: 28px;
-      --max: 1160px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
@@ -30,22 +31,57 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(124,58,237,0.16), transparent 24%),
-        radial-gradient(circle at top right, rgba(6,182,212,0.16), transparent 22%),
-        radial-gradient(circle at 75% 70%, rgba(249,115,22,0.10), transparent 26%),
+        radial-gradient(circle at 10% 10%, rgba(124,58,237,0.16), transparent 24%),
+        radial-gradient(circle at 90% 12%, rgba(6,182,212,0.16), transparent 22%),
+        radial-gradient(circle at 80% 78%, rgba(249,115,22,0.10), transparent 24%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
+    button, a { font: inherit; }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(18px);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.5;
+      animation: drift 14s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 340px; height: 340px; left: -80px; top: 70px;
+      background: radial-gradient(circle, rgba(124,58,237,0.28), transparent 70%);
+    }
+
+    .orb-2 {
+      width: 300px; height: 300px; right: -70px; top: 120px;
+      background: radial-gradient(circle, rgba(6,182,212,0.24), transparent 70%);
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 280px; height: 280px; right: 14%; bottom: 10%;
+      background: radial-gradient(circle, rgba(236,72,153,0.18), transparent 70%);
+      animation-delay: -8s;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-16px) translateX(10px); }
+    }
+
     .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
 
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.74);
-      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.68);
+      border-bottom: 1px solid rgba(99,102,241,0.08);
     }
 
     .nav-inner {
@@ -58,7 +94,7 @@
     .brand {
       font-size: 1.5rem;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
 
     .brand span,
@@ -79,9 +115,10 @@
       font-weight: 600;
     }
 
-    .nav-links a:hover { color: var(--purple); }
+    .nav-links a { transition: 0.2s ease; }
+    .nav-links a:hover { color: var(--purple); transform: translateY(-1px); }
 
-    .hero { padding: 72px 0 36px; }
+    .hero { padding: 76px 0 36px; }
 
     .hero-card {
       position: relative;
@@ -90,35 +127,32 @@
       grid-template-columns: 1.15fr 0.85fr;
       gap: 24px;
       padding: 36px;
-      border-radius: 34px;
+      border-radius: 36px;
       border: 1px solid var(--border);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.70)),
-        var(--surface);
+      background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,255,255,0.72));
       box-shadow: var(--shadow);
     }
 
     .hero-card::before {
       content: "";
       position: absolute;
-      width: 360px;
-      height: 360px;
-      right: -120px;
-      top: -140px;
+      inset: -40% auto auto -8%;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,72,153,0.18), transparent 66%);
+      background: radial-gradient(circle, rgba(124,58,237,0.12), transparent 68%);
       pointer-events: none;
     }
 
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 280px;
-      height: 280px;
-      left: -120px;
-      bottom: -140px;
+      right: -120px;
+      top: -80px;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.14), transparent 66%);
+      background: radial-gradient(circle, rgba(6,182,212,0.14), transparent 68%);
       pointer-events: none;
     }
 
@@ -136,8 +170,8 @@
 
     h1 {
       margin: 0 0 18px;
-      font-size: clamp(2.8rem, 6vw, 5.3rem);
-      line-height: 0.95;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.93;
       letter-spacing: -0.06em;
       max-width: 10ch;
     }
@@ -147,7 +181,7 @@
       max-width: 58ch;
       color: var(--muted);
       font-size: 1.05rem;
-      line-height: 1.8;
+      line-height: 1.82;
     }
 
     .cta-row {
@@ -163,8 +197,9 @@
       padding: 13px 18px;
       border-radius: 14px;
       font-weight: 700;
-      transition: transform 0.2s ease;
       border: 1px solid transparent;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      will-change: transform;
     }
 
     .btn:hover { transform: translateY(-2px); }
@@ -192,6 +227,13 @@
       border-radius: var(--radius);
       padding: 22px;
       box-shadow: 0 16px 36px rgba(124,58,237,0.08);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      transform-style: preserve-3d;
+    }
+
+    .tilt:hover {
+      transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 24px 40px rgba(124,58,237,0.14);
     }
 
     .stat {
@@ -206,7 +248,7 @@
     }
 
     .muted { color: var(--muted); }
-    .section { padding: 38px 0; }
+    .section { padding: 42px 0; }
 
     .section-title {
       margin: 0 0 10px;
@@ -222,13 +264,34 @@
     }
 
     .grid { display: grid; gap: 18px; }
+
+    .impact-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 6px;
+    }
+
+    .impact-card {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .impact-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
     .skills-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
       align-items: start;
     }
-    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .contact-grid { grid-template-columns: 1.15fr 0.85fr; }
 
     .skill-card {
       padding-right: 22px;
@@ -256,37 +319,23 @@
       line-height: 2;
     }
 
-    .skills-list li { margin: 0; }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(124,58,237,0.08);
-      border: 1px solid rgba(124,58,237,0.10);
-      color: var(--purple);
-      font-size: 0.85rem;
-    }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .project-card {
       position: relative;
       overflow: hidden;
+      min-height: 100%;
     }
 
     .project-card::before {
       content: "";
       position: absolute;
-      inset: auto -30px -40px auto;
+      right: -24px;
+      bottom: -28px;
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.16), transparent 70%);
+      background: radial-gradient(circle, rgba(124,58,237,0.14), transparent 70%);
       pointer-events: none;
     }
 
@@ -305,6 +354,22 @@
       font-size: 0.92rem;
     }
 
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.10);
+      color: var(--purple);
+      font-size: 0.85rem;
+    }
+
     .timeline { display: grid; gap: 16px; }
 
     .timeline-card {
@@ -321,10 +386,23 @@
       padding-top: 3px;
     }
 
+    .contact-grid { grid-template-columns: 1.15fr 0.85fr; }
+
     .contact-list {
       display: grid;
       gap: 12px;
       color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     footer {
@@ -339,7 +417,8 @@
       .contact-grid,
       .timeline-card,
       .projects-grid,
-      .skills-grid {
+      .skills-grid,
+      .impact-grid {
         grid-template-columns: 1fr;
       }
 
@@ -368,6 +447,10 @@
   </style>
 </head>
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
   <nav class="nav">
     <div class="container nav-inner">
       <a href="#home" class="brand">Akshay <span>Narsipur</span></a>
@@ -382,7 +465,7 @@
   </nav>
 
   <main id="home">
-    <section class="hero">
+    <section class="hero reveal">
       <div class="container">
         <div class="hero-card">
           <div>
@@ -392,24 +475,24 @@
               Revenue Operations professional with 5+ years of experience building GTM infrastructure, improving deal execution, and turning business needs into scalable systems, automation, and data-driven decisions.
             </p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="#projects">View Projects</a>
-              <a class="btn btn-secondary" href="https://github.com/akshay-narsipur" target="_blank" rel="noreferrer">GitHub</a>
-              <a class="btn btn-secondary" href="#contact">Contact</a>
+              <a class="btn btn-primary magnetic" href="#projects">View Projects</a>
+              <a class="btn btn-secondary magnetic" href="https://github.com/akshay-narsipur" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="btn btn-secondary magnetic" href="#contact">Contact</a>
             </div>
           </div>
 
           <div class="hero-side">
-            <div class="glass-card stat">
+            <div class="glass-card tilt stat">
               <span class="muted">Current Focus</span>
               <strong>Revenue Systems &amp; GTM Scale</strong>
               <span class="muted">Improving forecast visibility, quote workflows, and process clarity across fast-moving sales teams.</span>
             </div>
-            <div class="glass-card stat">
+            <div class="glass-card tilt stat">
               <span class="muted">Core Strengths</span>
               <strong>Systems • Data • Execution</strong>
               <span class="muted">Translating messy business needs into scalable workflows, clean data, and better decisions.</span>
             </div>
-            <div class="glass-card stat">
+            <div class="glass-card tilt stat">
               <span class="muted">What I Build</span>
               <strong>Predictable Revenue Operations</strong>
               <span class="muted">From Salesforce and CPQ to reporting and automation, built to support scale.</span>
@@ -419,16 +502,30 @@
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section reveal">
       <div class="container">
         <h2 class="section-title">About Me</h2>
         <p class="section-copy">
           I work at the intersection of revenue operations, systems, and execution. My focus is on improving how teams forecast, quote, operate, and make decisions by building cleaner processes across Salesforce, CPQ, automation, and reporting.
         </p>
+        <div class="grid impact-grid">
+          <div class="glass-card tilt impact-card">
+            <span class="impact-number">5+</span>
+            <div class="muted">Years in GTM and revenue systems</div>
+          </div>
+          <div class="glass-card tilt impact-card">
+            <span class="impact-number">End-to-End</span>
+            <div class="muted">Thinking across tools, process, and execution</div>
+          </div>
+          <div class="glass-card tilt impact-card">
+            <span class="impact-number">Data-Led</span>
+            <div class="muted">Focused on signals, visibility, and cleaner decisions</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <section id="skills" class="section reveal">
       <div class="container">
         <h2 class="section-title">Skills</h2>
         <p class="section-copy">Core strengths across revenue operations, systems, planning, and execution.</p>
@@ -473,12 +570,12 @@
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <section id="projects" class="section reveal">
       <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-copy">Swap these placeholders with your strongest work, case studies, or public writeups.</p>
+        <h2 class="section-title">Selected Work</h2>
+        <p class="section-copy">A few examples of the systems and process problems I like solving.</p>
         <div class="grid projects-grid">
-          <article class="glass-card project-card">
+          <article class="glass-card project-card tilt">
             <div class="project-top">
               <h3>CPQ Migration Strategy</h3>
               <div class="project-links"><a href="#">Case Study</a></div>
@@ -491,7 +588,7 @@
             </div>
           </article>
 
-          <article class="glass-card project-card">
+          <article class="glass-card project-card tilt">
             <div class="project-top">
               <h3>Data Quality Improvement</h3>
               <div class="project-links"><a href="#">Overview</a></div>
@@ -504,7 +601,7 @@
             </div>
           </article>
 
-          <article class="glass-card project-card">
+          <article class="glass-card project-card tilt">
             <div class="project-top">
               <h3>Email Validation Workflow</h3>
               <div class="project-links"><a href="#">Details</a></div>
@@ -517,7 +614,7 @@
             </div>
           </article>
 
-          <article class="glass-card project-card">
+          <article class="glass-card project-card tilt">
             <div class="project-top">
               <h3>TAM Expansion Research</h3>
               <div class="project-links"><a href="#">Summary</a></div>
@@ -533,12 +630,12 @@
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="section reveal">
       <div class="container">
         <h2 class="section-title">Experience</h2>
-        <p class="section-copy">A simple timeline that you can refine later with achievements and outcomes.</p>
+        <p class="section-copy">A concise timeline of where I’ve built and improved systems.</p>
         <div class="timeline">
-          <div class="glass-card timeline-card">
+          <div class="glass-card timeline-card tilt">
             <div class="time">2022 — Present</div>
             <div>
               <h3>Sales Operations Analyst · o9 Solutions</h3>
@@ -546,7 +643,7 @@
             </div>
           </div>
 
-          <div class="glass-card timeline-card">
+          <div class="glass-card timeline-card tilt">
             <div class="time">Earlier Role</div>
             <div>
               <h3>Market Research Analyst</h3>
@@ -557,10 +654,10 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section reveal">
       <div class="container">
         <div class="grid contact-grid">
-          <div class="glass-card contact-card">
+          <div class="glass-card contact-card tilt">
             <h3>Let’s Connect</h3>
             <p class="muted">Use this section for recruiters, collaborators, or anyone who wants to reach out.</p>
             <div class="contact-list">
@@ -570,7 +667,7 @@
             </div>
           </div>
 
-          <div class="glass-card contact-card">
+          <div class="glass-card contact-card tilt">
             <h3>Portfolio Tip</h3>
             <p class="muted">The strongest portfolios show outcomes. For each project, mention the problem, your role, the system change, and the business impact.</p>
           </div>
@@ -580,7 +677,30 @@
   </main>
 
   <footer>
-    Built with HTML and CSS. Hosted on GitHub Pages.
+    Built with HTML, CSS, and a little JavaScript. Hosted on GitHub Pages.
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el) => observer.observe(el));
+
+    const magnets = document.querySelectorAll('.magnetic');
+    magnets.forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
+  </script>
 </body>
 </html>
