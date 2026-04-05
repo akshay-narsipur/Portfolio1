@@ -218,9 +218,23 @@
     }
 
     .grid { display: grid; gap: 18px; }
-    .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .skills-grid { grid-template-columns: 1fr; gap: 0; }
     .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .contact-grid { grid-template-columns: 1.15fr 0.85fr; }
+
+    .skill-card {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 28px 0;
+      box-shadow: none;
+      backdrop-filter: none;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .skill-card:last-child {
+      border-bottom: none;
+    }
 
     .skill-card h3,
     .project-card h3,
@@ -228,6 +242,17 @@
     .contact-card h3 {
       margin: 0 0 10px;
       font-size: 1.06rem;
+    }
+
+    .skills-list {
+      margin: 14px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .skills-list li {
+      margin: 0;
     }
 
     .tags {
@@ -390,24 +415,44 @@
 
     <section id="skills" class="section">
       <div class="container">
-        <h2 class="section-title">Skills & Tools</h2>
-        <p class="section-copy">A quick snapshot of the areas I work across regularly.</p>
+        <h2 class="section-title">Skills</h2>
+        <p class="section-copy">Core strengths across revenue operations, systems, planning, and execution.</p>
         <div class="grid skills-grid">
-          <div class="glass-card skill-card">
-            <h3>Revenue Systems</h3>
-            <p class="muted">Salesforce, CPQ, DealHub, Outreach, workflow design, approvals, and system governance.</p>
+          <div class="skill-card">
+            <h3>Revenue Operations &amp; Strategy</h3>
+            <ul class="skills-list">
+              <li>Revenue Forecasting</li>
+              <li>Pipeline Management</li>
+              <li>Territory &amp; Capacity Planning</li>
+              <li>Quota Modelling</li>
+              <li>Sales Target Setting</li>
+              <li>Deal Desk &amp; Pricing Operations</li>
+            </ul>
           </div>
-          <div class="glass-card skill-card">
-            <h3>Operations</h3>
-            <p class="muted">Forecast support, process optimization, data governance, stakeholder alignment, and execution.</p>
+
+          <div class="skill-card">
+            <h3>Systems &amp; Tools</h3>
+            <ul class="skills-list">
+              <li>Salesforce (Admin-level Governance)</li>
+              <li>Quote-to-Cash (CPQ)</li>
+              <li>Google Sheets (Advanced)</li>
+              <li>Clay (GTM Data Enrichment &amp; Automation)</li>
+              <li>Airtable</li>
+              <li>Make (Automation Workflows)</li>
+              <li>Outreach</li>
+              <li>ZoomInfo &amp; Apollo</li>
+            </ul>
           </div>
-          <div class="glass-card skill-card">
-            <h3>Analysis</h3>
-            <p class="muted">Business reporting, account research, territory support, performance tracking, and signal-driven decisions.</p>
-          </div>
-          <div class="glass-card skill-card">
-            <h3>Execution</h3>
-            <p class="muted">Requirements gathering, testing, rollout planning, enablement, and documentation.</p>
+
+          <div class="skill-card">
+            <h3>Strategy &amp; Leadership</h3>
+            <ul class="skills-list">
+              <li>GTM Systems &amp; Process Design</li>
+              <li>Deal Desk Operations</li>
+              <li>Data Analysis &amp; KPI Design</li>
+              <li>Change Management</li>
+              <li>Cross-functional Stakeholder Management</li>
+            </ul>
           </div>
         </div>
       </div>
