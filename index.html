@@ -560,6 +560,62 @@
       font-size: 0.85rem;
     }
 
+    .project-section-title {
+      margin: 18px 0 8px;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 10px;
+    }
+
+    .flow-node {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(15,23,42,0.08);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: 0 8px 20px rgba(81, 109, 144, 0.08);
+    }
+
+    .flow-arrow {
+      color: var(--purple);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .impact-points {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .impact-point {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .impact-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-top: 8px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      flex: 0 0 auto;
+    }
+
     .timeline { display: grid; gap: 16px; }
 
     .timeline-card {
@@ -811,54 +867,141 @@
     <section id="projects" class="section reveal">
       <div class="container">
         <h2 class="section-title">Selected Work</h2>
-        <p class="section-copy">A few examples of the systems and process problems I like solving.</p>
+        <p class="section-copy">A few systems I’ve built to improve visibility, decision-making, and revenue execution.</p>
         <div class="projects-grid">
           <article class="glass project-card">
             <div class="project-top">
-              <h3>CPQ Migration Strategy</h3>
-              <div class="project-links"><a href="#">Case Study</a></div>
+              <h3>o9 Connection Universe</h3>
             </div>
-            <p class="muted">Built the business case and planning approach for moving from Salesforce CPQ to a more scalable quoting model focused on usability, control, and scale.</p>
+            <p class="muted">Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.</p>
+
+            <div class="project-section-title">Problem</div>
+            <p class="muted">BDs and AEs lacked visibility into whether someone inside o9 already had a first- or second-degree connection with prospects at target accounts, making outreach colder and slower than it needed to be.</p>
+
+            <div class="project-section-title">System Flow</div>
+            <div class="flow-row">
+              <div class="flow-node">LinkedIn SalesNav</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Phantombuster</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Salesforce</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Looker Studio</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">AE / BD Search View</div>
+            </div>
+
+            <div class="project-section-title">Approach</div>
+            <ul class="skills-list">
+              <li>Downloaded first- and second-degree connections of senior o9 leaders</li>
+              <li>Pushed connection data into Salesforce at the contact level</li>
+              <li>Flagged whether a contact was part of the o9 Connection Universe</li>
+              <li>Marked the internal executive who could help unlock the introduction</li>
+              <li>Built a Looker Studio application where sellers could search an account and instantly see reachable contacts plus the best internal connector</li>
+            </ul>
+
+            <div class="project-section-title">Impact</div>
+            <div class="impact-points">
+              <div class="impact-point"><span class="impact-dot"></span><span>Enabled faster access to prospects through warm introductions</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Made executive relationship capital searchable and usable at scale</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Improved seller efficiency by reducing guesswork around who to contact and how</span></div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">LinkedIn SalesNav</span>
+              <span class="tag">Phantombuster</span>
+              <span class="tag">Salesforce</span>
+              <span class="tag">Looker Studio</span>
+            </div>
+          </article>
+
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>Automated Competitive Intelligence Alerts in Slack</h3>
+            </div>
+            <p class="muted">Designed an automated signal-delivery system that pushed competitive intelligence into Slack so sellers could react faster to market and account-level changes.</p>
+
+            <div class="project-section-title">Problem</div>
+            <p class="muted">Competitive updates were fragmented and often surfaced too late, which made it difficult for teams to respond quickly with the right message, positioning, or account strategy.</p>
+
+            <div class="project-section-title">System Flow</div>
+            <div class="flow-row">
+              <div class="flow-node">Signal Sources</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Enrichment / Logic</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Automation Layer</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Slack Alerts</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Seller Action</div>
+            </div>
+
+            <div class="project-section-title">Approach</div>
+            <ul class="skills-list">
+              <li>Defined the most useful competitive signals for sellers</li>
+              <li>Connected source data and enrichment workflows into an automated pipeline</li>
+              <li>Structured alerts for Slack so they were timely, readable, and actionable</li>
+              <li>Created a repeatable process for surfacing external changes directly in seller workflows</li>
+            </ul>
+
+            <div class="project-section-title">Impact</div>
+            <div class="impact-points">
+              <div class="impact-point"><span class="impact-dot"></span><span>Reduced delay between signal detection and sales response</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Improved visibility into competitor activity across active opportunities</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Brought intelligence into Slack where teams already collaborate and act</span></div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">Automation</span>
+              <span class="tag">Slack</span>
+              <span class="tag">Competitive Intelligence</span>
+              <span class="tag">Signals</span>
+            </div>
+          </article>
+
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>CPQ Governance Dashboard</h3>
+            </div>
+            <p class="muted">Built a governance dashboard to improve visibility into quoting behavior, discounting, approvals, and deal structure quality across CPQ workflows.</p>
+
+            <div class="project-section-title">Problem</div>
+            <p class="muted">Leadership and operations teams lacked a clean view into how deals were being structured, where approval friction existed, and how discounting patterns were trending across quotes.</p>
+
+            <div class="project-section-title">System Flow</div>
+            <div class="flow-row">
+              <div class="flow-node">CPQ Data</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Governance Logic</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Approval Tracking</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Dashboard View</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">Leadership Insights</div>
+            </div>
+
+            <div class="project-section-title">Approach</div>
+            <ul class="skills-list">
+              <li>Defined the core governance KPIs needed across quoting and discount approvals</li>
+              <li>Consolidated data points related to quote structure, discount patterns, and approval paths</li>
+              <li>Built reporting views to highlight outliers, bottlenecks, and policy adherence</li>
+              <li>Created leadership-level visibility into deal quality and CPQ usage trends</li>
+            </ul>
+
+            <div class="project-section-title">Impact</div>
+            <div class="impact-points">
+              <div class="impact-point"><span class="impact-dot"></span><span>Improved transparency into discounting and approvals</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Made quote governance more measurable and scalable</span></div>
+              <div class="impact-point"><span class="impact-dot"></span><span>Enabled better operational control and cleaner leadership reporting</span></div>
+            </div>
+
             <div class="tags">
               <span class="tag">CPQ</span>
+              <span class="tag">Governance</span>
+              <span class="tag">Dashboarding</span>
               <span class="tag">Salesforce</span>
-              <span class="tag">Strategy</span>
-            </div>
-          </article>
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>Data Quality Improvement</h3>
-              <div class="project-links"><a href="#">Overview</a></div>
-            </div>
-            <p class="muted">Designed a cleaner approach to identify mismatches between contact email domains and assigned accounts for better CRM trust and sales execution.</p>
-            <div class="tags">
-              <span class="tag">CRM</span>
-              <span class="tag">Data Quality</span>
-              <span class="tag">Automation</span>
-            </div>
-          </article>
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>Email Validation Workflow</h3>
-              <div class="project-links"><a href="#">Details</a></div>
-            </div>
-            <p class="muted">Supported an email verification initiative to improve data quality and downstream targeting across Salesforce and outreach workflows.</p>
-            <div class="tags">
-              <span class="tag">ZeroBounce</span>
-              <span class="tag">Outreach</span>
-              <span class="tag">Salesforce</span>
-            </div>
-          </article>
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>TAM Expansion Research</h3>
-              <div class="project-links"><a href="#">Summary</a></div>
-            </div>
-            <p class="muted">Helped identify and validate high-fit accounts using demand signals, research, and go-to-market qualification logic.</p>
-            <div class="tags">
-              <span class="tag">Research</span>
-              <span class="tag">Signals</span>
-              <span class="tag">GTM</span>
             </div>
           </article>
         </div>
