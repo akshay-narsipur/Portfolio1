@@ -787,9 +787,9 @@
               <div class="status-card" id="projectPanel">
                 <div class="status-title">Project Briefs</div>
                 <div class="status-list" style="margin-bottom: 14px;">
-                  <button class="mode-btn project-btn active" data-project="connection" style="text-align:left;">o9 Connection Universe<small>Warm introductions through internal networks</small></button>
-                  <button class="mode-btn project-btn" data-project="alerts" style="text-align:left;">Competitive Intelligence Alerts<small>Automated Slack alerts for seller action</small></button>
-                  <button class="mode-btn project-btn" data-project="cpqdash" style="text-align:left;">CPQ Governance Dashboard<small>Approval, discount, and quote visibility</small></button>
+                  <button class="mode-btn project-btn active" data-project="connection" style="text-align:left;">o9 Connection Universe</button>
+                  <button class="mode-btn project-btn" data-project="alerts" style="text-align:left;">Competitive Intelligence Alerts</button>
+                  <button class="mode-btn project-btn" data-project="cpqdash" style="text-align:left;">CPQ Governance Dashboard</button>
                 </div>
                 <div class="project-detail-box" id="projectDetailBox" style="padding:14px; border-radius:16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); line-height:1.6;">
                   <div id="projectDetailTitle" style="font-weight:800; margin-bottom:8px;">o9 Connection Universe</div>
@@ -1119,6 +1119,7 @@
 
     function setProject(projectKey) {
       const project = projects[projectKey];
+      projectDetailTitle.style.display = 'none';
       projectDetailTitle.textContent = project.title;
       projectDetailProblem.innerHTML = '<strong style="color:#fff;">Problem:</strong> ' + project.problem;
       projectDetailFlow.innerHTML = '<strong style="color:#fff;">Flow:</strong> ' + project.flow;
