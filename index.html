@@ -784,15 +784,44 @@
                 <div style="text-align:center; color: rgba(255,255,255,0.72); font-size: 0.92rem;" id="dialSub">Operational confidence</div>
               </div>
 
-              <div class="status-card">
-                <div class="status-title">Flight Status</div>
-                <div class="status-list">
-                  <div class="status-row"><span id="status1Label">Data Integrity</span><span class="status-pill pill-green" id="status1Value">Stable</span></div>
-                  <div class="status-row"><span id="status2Label">Forecast Signal</span><span class="status-pill pill-cyan" id="status2Value">Tracking</span></div>
-                  <div class="status-row"><span id="status3Label">Deal Velocity</span><span class="status-pill pill-amber" id="status3Value">Optimizing</span></div>
+              <div class="status-card" id="projectPanel">
+                <div class="status-title">Project Briefs</div>
+                <div class="status-list" style="margin-bottom: 14px;">
+                  <button class="mode-btn project-btn active" data-project="connection" style="text-align:left;">o9 Connection Universe<small>Warm introductions through internal networks</small></button>
+                  <button class="mode-btn project-btn" data-project="alerts" style="text-align:left;">Competitive Intelligence Alerts<small>Automated Slack alerts for seller action</small></button>
+                  <button class="mode-btn project-btn" data-project="cpqdash" style="text-align:left;">CPQ Governance Dashboard<small>Approval, discount, and quote visibility</small></button>
+                </div>
+                <div class="project-detail-box" id="projectDetailBox" style="padding:14px; border-radius:16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); line-height:1.6;">
+                  <div id="projectDetailTitle" style="font-weight:800; margin-bottom:8px;">o9 Connection Universe</div>
+                  <div id="projectDetailProblem" style="margin-bottom:8px;"><strong style="color:#fff;">Problem:</strong> Sellers lacked visibility into whether o9 leaders already had relationships with prospects in target accounts.</div>
+                  <div id="projectDetailFlow" style="margin-bottom:8px;"><strong style="color:#fff;">Flow:</strong> LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio</div>
+                  <div id="projectDetailImpact"><strong style="color:#fff;">Impact:</strong> Warm introductions became searchable and usable at scale for AEs and BDs.</div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-copy">
+          I work at the intersection of revenue operations, systems, and execution. My focus is on improving how teams forecast, quote, operate, and make decisions by building cleaner processes across Salesforce, CPQ, automation, and reporting.
+        </p>
+        <div class="impact-grid">
+          <div class="glass impact-card">
+            <span class="impact-number">5+</span>
+            <div class="muted">Years across GTM systems and revenue operations</div>
+          </div>
+          <div class="glass impact-card">
+            <span class="impact-number">Cross-Functional</span>
+            <div class="muted">Working across Sales, Finance, Ops, and leadership needs</div>
+          </div>
+          <div class="glass impact-card">
+            <span class="impact-number">Data-Led</span>
+            <div class="muted">Focused on signals, cleaner reporting, and better decisions</div>
           </div>
         </div>
       </div>
@@ -864,149 +893,7 @@
       </div>
     </section>
 
-    <section id="projects" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Selected Work</h2>
-        <p class="section-copy">A few systems I’ve built to improve visibility, decision-making, and revenue execution.</p>
-        <div class="projects-grid">
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>o9 Connection Universe</h3>
-            </div>
-            <p class="muted">Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.</p>
-
-            <div class="project-section-title">Problem</div>
-            <p class="muted">BDs and AEs lacked visibility into whether someone inside o9 already had a first- or second-degree connection with prospects at target accounts, making outreach colder and slower than it needed to be.</p>
-
-            <div class="project-section-title">System Flow</div>
-            <div class="flow-row">
-              <div class="flow-node">LinkedIn SalesNav</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Phantombuster</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Salesforce</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Looker Studio</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">AE / BD Search View</div>
-            </div>
-
-            <div class="project-section-title">Approach</div>
-            <ul class="skills-list">
-              <li>Downloaded first- and second-degree connections of senior o9 leaders</li>
-              <li>Pushed connection data into Salesforce at the contact level</li>
-              <li>Flagged whether a contact was part of the o9 Connection Universe</li>
-              <li>Marked the internal executive who could help unlock the introduction</li>
-              <li>Built a Looker Studio application where sellers could search an account and instantly see reachable contacts plus the best internal connector</li>
-            </ul>
-
-            <div class="project-section-title">Impact</div>
-            <div class="impact-points">
-              <div class="impact-point"><span class="impact-dot"></span><span>Enabled faster access to prospects through warm introductions</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Made executive relationship capital searchable and usable at scale</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Improved seller efficiency by reducing guesswork around who to contact and how</span></div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">LinkedIn SalesNav</span>
-              <span class="tag">Phantombuster</span>
-              <span class="tag">Salesforce</span>
-              <span class="tag">Looker Studio</span>
-            </div>
-          </article>
-
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>Automated Competitive Intelligence Alerts in Slack</h3>
-            </div>
-            <p class="muted">Designed an automated signal-delivery system that pushed competitive intelligence into Slack so sellers could react faster to market and account-level changes.</p>
-
-            <div class="project-section-title">Problem</div>
-            <p class="muted">Competitive updates were fragmented and often surfaced too late, which made it difficult for teams to respond quickly with the right message, positioning, or account strategy.</p>
-
-            <div class="project-section-title">System Flow</div>
-            <div class="flow-row">
-              <div class="flow-node">Signal Sources</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Enrichment / Logic</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Automation Layer</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Slack Alerts</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Seller Action</div>
-            </div>
-
-            <div class="project-section-title">Approach</div>
-            <ul class="skills-list">
-              <li>Defined the most useful competitive signals for sellers</li>
-              <li>Connected source data and enrichment workflows into an automated pipeline</li>
-              <li>Structured alerts for Slack so they were timely, readable, and actionable</li>
-              <li>Created a repeatable process for surfacing external changes directly in seller workflows</li>
-            </ul>
-
-            <div class="project-section-title">Impact</div>
-            <div class="impact-points">
-              <div class="impact-point"><span class="impact-dot"></span><span>Reduced delay between signal detection and sales response</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Improved visibility into competitor activity across active opportunities</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Brought intelligence into Slack where teams already collaborate and act</span></div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">Automation</span>
-              <span class="tag">Slack</span>
-              <span class="tag">Competitive Intelligence</span>
-              <span class="tag">Signals</span>
-            </div>
-          </article>
-
-          <article class="glass project-card">
-            <div class="project-top">
-              <h3>CPQ Governance Dashboard</h3>
-            </div>
-            <p class="muted">Built a governance dashboard to improve visibility into quoting behavior, discounting, approvals, and deal structure quality across CPQ workflows.</p>
-
-            <div class="project-section-title">Problem</div>
-            <p class="muted">Leadership and operations teams lacked a clean view into how deals were being structured, where approval friction existed, and how discounting patterns were trending across quotes.</p>
-
-            <div class="project-section-title">System Flow</div>
-            <div class="flow-row">
-              <div class="flow-node">CPQ Data</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Governance Logic</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Approval Tracking</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Dashboard View</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-node">Leadership Insights</div>
-            </div>
-
-            <div class="project-section-title">Approach</div>
-            <ul class="skills-list">
-              <li>Defined the core governance KPIs needed across quoting and discount approvals</li>
-              <li>Consolidated data points related to quote structure, discount patterns, and approval paths</li>
-              <li>Built reporting views to highlight outliers, bottlenecks, and policy adherence</li>
-              <li>Created leadership-level visibility into deal quality and CPQ usage trends</li>
-            </ul>
-
-            <div class="project-section-title">Impact</div>
-            <div class="impact-points">
-              <div class="impact-point"><span class="impact-dot"></span><span>Improved transparency into discounting and approvals</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Made quote governance more measurable and scalable</span></div>
-              <div class="impact-point"><span class="impact-dot"></span><span>Enabled better operational control and cleaner leadership reporting</span></div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">CPQ</span>
-              <span class="tag">Governance</span>
-              <span class="tag">Dashboarding</span>
-              <span class="tag">Salesforce</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    
 
     <section id="experience" class="section reveal">
       <div class="container">
@@ -1177,12 +1064,11 @@
     const dial = document.getElementById('dial');
     const dialValue = document.getElementById('dialValue');
     const dialSub = document.getElementById('dialSub');
-    const status1Label = document.getElementById('status1Label');
-    const status1Value = document.getElementById('status1Value');
-    const status2Label = document.getElementById('status2Label');
-    const status2Value = document.getElementById('status2Value');
-    const status3Label = document.getElementById('status3Label');
-    const status3Value = document.getElementById('status3Value');
+    const projectButtons = document.querySelectorAll('.project-btn');
+    const projectDetailTitle = document.getElementById('projectDetailTitle');
+    const projectDetailProblem = document.getElementById('projectDetailProblem');
+    const projectDetailFlow = document.getElementById('projectDetailFlow');
+    const projectDetailImpact = document.getElementById('projectDetailImpact');
 
     function setMode(mode) {
       const data = modes[mode];
@@ -1201,21 +1087,47 @@
       dialSub.textContent = data.dialSub;
       dial.style.background = `conic-gradient(${data.dialColor} 0deg, ${data.dialColor} ${data.dialDeg}deg, rgba(255,255,255,0.10) ${data.dialDeg}deg 360deg)`;
 
-      status1Label.textContent = data.status1Label;
-      status1Value.textContent = data.status1Value;
-      status1Value.className = `status-pill ${data.status1Class}`;
-      status2Label.textContent = data.status2Label;
-      status2Value.textContent = data.status2Value;
-      status2Value.className = `status-pill ${data.status2Class}`;
-      status3Label.textContent = data.status3Label;
-      status3Value.textContent = data.status3Value;
-      status3Value.className = `status-pill ${data.status3Class}`;
+      
 
       modeButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.mode === mode));
     }
 
     modeButtons.forEach((btn) => {
       btn.addEventListener('click', () => setMode(btn.dataset.mode));
+    });
+
+    const projects = {
+      connection: {
+        title: 'o9 Connection Universe',
+        problem: 'Sellers lacked visibility into whether o9 leaders already had first- or second-degree relationships with prospects in target accounts.',
+        flow: 'LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio',
+        impact: 'Warm introductions became searchable and usable at scale, helping AEs and BDs find faster pathways into accounts.'
+      },
+      alerts: {
+        title: 'Competitive Intelligence Alerts',
+        problem: 'Competitive signals were fragmented and surfaced too late for sales teams to act with the right message and timing.',
+        flow: 'Signal Sources → Enrichment Logic → Automation Layer → Slack Alerts',
+        impact: 'Reduced lag between signal detection and seller action by delivering competitive updates directly into Slack.'
+      },
+      cpqdash: {
+        title: 'CPQ Governance Dashboard',
+        problem: 'Leadership lacked a clean view into discounting, approvals, and quote structure quality across CPQ workflows.',
+        flow: 'CPQ Data → Governance Logic → Approval Tracking → Dashboard View',
+        impact: 'Improved transparency into quoting behavior and created better operational control through leadership-level reporting.'
+      }
+    };
+
+    function setProject(projectKey) {
+      const project = projects[projectKey];
+      projectDetailTitle.textContent = project.title;
+      projectDetailProblem.innerHTML = '<strong style="color:#fff;">Problem:</strong> ' + project.problem;
+      projectDetailFlow.innerHTML = '<strong style="color:#fff;">Flow:</strong> ' + project.flow;
+      projectDetailImpact.innerHTML = '<strong style="color:#fff;">Impact:</strong> ' + project.impact;
+      projectButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.project === projectKey));
+    }
+
+    projectButtons.forEach((btn) => {
+      btn.addEventListener('click', () => setProject(btn.dataset.project));
     });
   </script>
 </body>
