@@ -447,6 +447,87 @@
       border-color: rgba(255,255,255,0.18);
     }
 
+    .project-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 15, 35, 0.52);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 120;
+    }
+
+    .project-modal.open {
+      display: flex;
+    }
+
+    .project-modal-card {
+      width: min(760px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,255,0.96));
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(8, 26, 58, 0.22);
+      padding: 24px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .project-modal-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .project-modal-title {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .project-close {
+      appearance: none;
+      border: none;
+      background: rgba(124,58,237,0.08);
+      color: var(--purple);
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .project-modal-copy {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .project-modal-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-modal-row {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.08);
+    }
+
+    .project-modal-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--purple);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
     .section { padding: 42px 0; }
     .section-title {
       margin: 0 0 10px;
@@ -791,18 +872,38 @@
                   <button class="mode-btn project-btn" data-project="alerts" style="text-align:left;">Competitive Intelligence Alerts</button>
                   <button class="mode-btn project-btn" data-project="cpqdash" style="text-align:left;">CPQ Governance Dashboard</button>
                 </div>
-                <div class="project-detail-box" id="projectDetailBox" style="padding:14px; border-radius:16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); line-height:1.6;">
-                  <div id="projectDetailTitle" style="font-weight:800; margin-bottom:8px;">o9 Connection Universe</div>
-                  <div id="projectDetailProblem" style="margin-bottom:8px;"><strong style="color:#fff;">Problem:</strong> Sellers lacked visibility into whether o9 leaders already had relationships with prospects in target accounts.</div>
-                  <div id="projectDetailFlow" style="margin-bottom:8px;"><strong style="color:#fff;">Flow:</strong> LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio</div>
-                  <div id="projectDetailImpact"><strong style="color:#fff;">Impact:</strong> Warm introductions became searchable and usable at scale for AEs and BDs.</div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="project-modal-card">
+        <div class="project-modal-top">
+          <div>
+            <h3 class="project-modal-title" id="projectModalTitle">o9 Connection Universe</h3>
+            <div class="project-modal-copy" id="projectModalIntro">Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.</div>
+          </div>
+          <button class="project-close" id="projectClose" aria-label="Close">×</button>
+        </div>
+        <div class="project-modal-grid">
+          <div class="project-modal-row">
+            <div class="project-modal-label">Problem</div>
+            <div id="projectModalProblem">Sellers lacked visibility into whether o9 leaders already had first- or second-degree relationships with prospects in target accounts.</div>
+          </div>
+          <div class="project-modal-row">
+            <div class="project-modal-label">Flow</div>
+            <div id="projectModalFlow">LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio</div>
+          </div>
+          <div class="project-modal-row">
+            <div class="project-modal-label">Impact</div>
+            <div id="projectModalImpact">Warm introductions became searchable and usable at scale, helping AEs and BDs find faster pathways into accounts.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section id="about" class="section reveal">
       <div class="container">
@@ -1065,10 +1166,13 @@
     const dialValue = document.getElementById('dialValue');
     const dialSub = document.getElementById('dialSub');
     const projectButtons = document.querySelectorAll('.project-btn');
-    const projectDetailTitle = document.getElementById('projectDetailTitle');
-    const projectDetailProblem = document.getElementById('projectDetailProblem');
-    const projectDetailFlow = document.getElementById('projectDetailFlow');
-    const projectDetailImpact = document.getElementById('projectDetailImpact');
+    const projectModal = document.getElementById('projectModal');
+    const projectClose = document.getElementById('projectClose');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalIntro = document.getElementById('projectModalIntro');
+    const projectModalProblem = document.getElementById('projectModalProblem');
+    const projectModalFlow = document.getElementById('projectModalFlow');
+    const projectModalImpact = document.getElementById('projectModalImpact');
 
     function setMode(mode) {
       const data = modes[mode];
@@ -1099,18 +1203,21 @@
     const projects = {
       connection: {
         title: 'o9 Connection Universe',
+        intro: 'Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.',
         problem: 'Sellers lacked visibility into whether o9 leaders already had first- or second-degree relationships with prospects in target accounts.',
         flow: 'LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio',
         impact: 'Warm introductions became searchable and usable at scale, helping AEs and BDs find faster pathways into accounts.'
       },
       alerts: {
         title: 'Competitive Intelligence Alerts',
+        intro: 'Designed an automated signal-delivery system that pushed competitive intelligence into Slack so sellers could react faster to market and account-level changes.',
         problem: 'Competitive signals were fragmented and surfaced too late for sales teams to act with the right message and timing.',
         flow: 'Signal Sources → Enrichment Logic → Automation Layer → Slack Alerts',
         impact: 'Reduced lag between signal detection and seller action by delivering competitive updates directly into Slack.'
       },
       cpqdash: {
         title: 'CPQ Governance Dashboard',
+        intro: 'Built a governance dashboard to improve visibility into quoting behavior, discounting, approvals, and deal structure quality across CPQ workflows.',
         problem: 'Leadership lacked a clean view into discounting, approvals, and quote structure quality across CPQ workflows.',
         flow: 'CPQ Data → Governance Logic → Approval Tracking → Dashboard View',
         impact: 'Improved transparency into quoting behavior and created better operational control through leadership-level reporting.'
@@ -1119,16 +1226,37 @@
 
     function setProject(projectKey) {
       const project = projects[projectKey];
-      projectDetailTitle.style.display = 'none';
-      projectDetailTitle.textContent = project.title;
-      projectDetailProblem.innerHTML = '<strong style="color:#fff;">Problem:</strong> ' + project.problem;
-      projectDetailFlow.innerHTML = '<strong style="color:#fff;">Flow:</strong> ' + project.flow;
-      projectDetailImpact.innerHTML = '<strong style="color:#fff;">Impact:</strong> ' + project.impact;
+      projectModalTitle.textContent = project.title;
+      projectModalIntro.textContent = project.intro;
+      projectModalProblem.textContent = project.problem;
+      projectModalFlow.textContent = project.flow;
+      projectModalImpact.textContent = project.impact;
       projectButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.project === projectKey));
+      projectModal.classList.add('open');
+      projectModal.setAttribute('aria-hidden', 'false');
     }
 
     projectButtons.forEach((btn) => {
       btn.addEventListener('click', () => setProject(btn.dataset.project));
+    });
+
+    projectClose.addEventListener('click', () => {
+      projectModal.classList.remove('open');
+      projectModal.setAttribute('aria-hidden', 'true');
+    });
+
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        projectModal.classList.remove('open');
+        projectModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        projectModal.classList.remove('open');
+        projectModal.setAttribute('aria-hidden', 'true');
+      }
     });
   </script>
 </body>
