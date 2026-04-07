@@ -504,7 +504,83 @@
     .project-modal-copy {
       color: var(--muted);
       line-height: 1.7;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .project-meta-chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.12);
+      color: var(--purple);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .workflow-strip {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(170px, 1fr);
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+    }
+
+    .workflow-card {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 10px 24px rgba(81,109,144,0.08);
+      min-height: 112px;
+    }
+
+    .workflow-step {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .workflow-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+      line-height: 1.3;
+      font-size: 0.95rem;
+    }
+
+    .workflow-desc {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.86rem;
+    }
+
+    .impact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .impact-chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(34,211,238,0.10);
+      border: 1px solid rgba(34,211,238,0.18);
+      color: #0f3b52;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .project-modal-grid {
@@ -888,20 +964,11 @@
           </div>
           <button class="project-close" id="projectClose" aria-label="Close">×</button>
         </div>
-        <div class="project-modal-grid">
-          <div class="project-modal-row">
-            <div class="project-modal-label">Problem</div>
-            <div id="projectModalProblem">Sellers lacked visibility into whether o9 leaders already had first- or second-degree relationships with prospects in target accounts.</div>
-          </div>
-          <div class="project-modal-row">
-            <div class="project-modal-label">Flow</div>
-            <div id="projectModalFlow">LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio</div>
-          </div>
-          <div class="project-modal-row">
-            <div class="project-modal-label">Impact</div>
-            <div id="projectModalImpact">Warm introductions became searchable and usable at scale, helping AEs and BDs find faster pathways into accounts.</div>
-          </div>
-        </div>
+        <div class="project-meta" id="projectMeta"></div>
+        <div class="workflow-strip" id="workflowStrip"></div>
+        <div class="impact-strip" id="impactStrip"></div>
+      </div>
+    </div>
       </div>
     </div>
 
@@ -1170,9 +1237,9 @@
     const projectClose = document.getElementById('projectClose');
     const projectModalTitle = document.getElementById('projectModalTitle');
     const projectModalIntro = document.getElementById('projectModalIntro');
-    const projectModalProblem = document.getElementById('projectModalProblem');
-    const projectModalFlow = document.getElementById('projectModalFlow');
-    const projectModalImpact = document.getElementById('projectModalImpact');
+    const projectMeta = document.getElementById('projectMeta');
+    const workflowStrip = document.getElementById('workflowStrip');
+    const impactStrip = document.getElementById('impactStrip');
 
     function setMode(mode) {
       const data = modes[mode];
@@ -1204,23 +1271,44 @@
       connection: {
         title: 'o9 Connection Universe',
         intro: 'Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.',
-        problem: 'Sellers lacked visibility into whether o9 leaders already had first- or second-degree relationships with prospects in target accounts.',
-        flow: 'LinkedIn SalesNav → Phantombuster → Salesforce → Looker Studio',
-        impact: 'Warm introductions became searchable and usable at scale, helping AEs and BDs find faster pathways into accounts.'
+        meta: ['LinkedIn SalesNav', 'Phantombuster', 'Salesforce', 'Looker Studio'],
+        steps: [
+          { title: 'Pull leader networks', desc: 'Extract first- and second-degree connections of senior leaders.' },
+          { title: 'Clean & map contacts', desc: 'Normalize names, accounts, and relationship data for CRM use.' },
+          { title: 'Push to Salesforce', desc: 'Mark contacts as part of the Connection Universe.' },
+          { title: 'Tag internal connector', desc: 'Identify who can unlock a warm introduction.' },
+          { title: 'Search by account', desc: 'AEs/BDs query target accounts in Looker Studio.' },
+          { title: 'Start conversations', desc: 'Use warm pathways to reach prospects faster.' }
+        ],
+        impacts: ['Warm intros at scale', 'Faster outreach', 'Higher response quality']
       },
       alerts: {
         title: 'Competitive Intelligence Alerts',
         intro: 'Designed an automated signal-delivery system that pushed competitive intelligence into Slack so sellers could react faster to market and account-level changes.',
-        problem: 'Competitive signals were fragmented and surfaced too late for sales teams to act with the right message and timing.',
-        flow: 'Signal Sources → Enrichment Logic → Automation Layer → Slack Alerts',
-        impact: 'Reduced lag between signal detection and seller action by delivering competitive updates directly into Slack.'
+        meta: ['Signal Sources', 'Automation', 'Slack', 'Seller Workflows'],
+        steps: [
+          { title: 'Load sources', desc: 'Track competitor feeds, domains, and key topics.' },
+          { title: 'Fetch new items', desc: 'Pull newly published content on a schedule.' },
+          { title: 'De-duplicate', desc: 'Skip anything already logged or processed.' },
+          { title: 'Classify signals', desc: 'Tag competitor, topic, sentiment, and urgency.' },
+          { title: 'Route by audience', desc: 'Map alerts to AE/SE/PMM channels and owners.' },
+          { title: 'Push to Slack', desc: 'Deliver readable, actionable alerts in real time.' }
+        ],
+        impacts: ['Faster response time', 'Better visibility', 'Action in Slack']
       },
       cpqdash: {
         title: 'CPQ Governance Dashboard',
         intro: 'Built a governance dashboard to improve visibility into quoting behavior, discounting, approvals, and deal structure quality across CPQ workflows.',
-        problem: 'Leadership lacked a clean view into discounting, approvals, and quote structure quality across CPQ workflows.',
-        flow: 'CPQ Data → Governance Logic → Approval Tracking → Dashboard View',
-        impact: 'Improved transparency into quoting behavior and created better operational control through leadership-level reporting.'
+        meta: ['CPQ', 'Approvals', 'Discounting', 'Leadership Reporting'],
+        steps: [
+          { title: 'Capture quote data', desc: 'Consolidate quote, discount, and approval events.' },
+          { title: 'Apply governance logic', desc: 'Flag policy exceptions and risk patterns.' },
+          { title: 'Track approvals', desc: 'Measure bottlenecks and turnaround by stage.' },
+          { title: 'Monitor discounting', desc: 'Surface trends and outliers by team and segment.' },
+          { title: 'Build dashboard', desc: 'Create a leadership view of deal quality and control.' },
+          { title: 'Drive consistency', desc: 'Improve compliance and quoting discipline at scale.' }
+        ],
+        impacts: ['Better control', 'Clearer visibility', 'Scalable governance']
       }
     };
 
@@ -1228,9 +1316,31 @@
       const project = projects[projectKey];
       projectModalTitle.textContent = project.title;
       projectModalIntro.textContent = project.intro;
-      projectModalProblem.textContent = project.problem;
-      projectModalFlow.textContent = project.flow;
-      projectModalImpact.textContent = project.impact;
+
+      projectMeta.innerHTML = '';
+      project.meta.forEach((item) => {
+        const chip = document.createElement('span');
+        chip.className = 'project-meta-chip';
+        chip.textContent = item;
+        projectMeta.appendChild(chip);
+      });
+
+      workflowStrip.innerHTML = '';
+      project.steps.forEach((step, idx) => {
+        const card = document.createElement('div');
+        card.className = 'workflow-card';
+        card.innerHTML = `<div class="workflow-step">Step ${idx + 1}</div><div class="workflow-title">${step.title}</div><div class="workflow-desc">${step.desc}</div>`;
+        workflowStrip.appendChild(card);
+      });
+
+      impactStrip.innerHTML = '';
+      project.impacts.forEach((impact) => {
+        const chip = document.createElement('span');
+        chip.className = 'impact-chip';
+        chip.textContent = impact;
+        impactStrip.appendChild(chip);
+      });
+
       projectButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.project === projectKey));
       projectModal.classList.add('open');
       projectModal.setAttribute('aria-hidden', 'false');
