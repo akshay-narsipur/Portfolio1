@@ -1,143 +1,1079 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Akshay Narsipur | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Narsipur | Revenue Cockpit</title>
+  <meta name="description" content="Revenue operations portfolio for Akshay Narsipur with an interactive cockpit-style hero." />
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --bg2: #eaf2fb;
+      --text: #0f172a;
+      --muted: #5b6b84;
+      --line: rgba(15, 23, 42, 0.10);
+      --panel: #081a3a;
+      --panel2: #0d234c;
+      --screen: #dff6ff;
+      --screen-2: #cfeefe;
+      --white: #ffffff;
+      --cyan: #22d3ee;
+      --lime: #84cc16;
+      --amber: #f59e0b;
+      --pink: #ec4899;
+      --purple: #7c3aed;
+      --shadow: 0 28px 70px rgba(8, 26, 58, 0.18);
+      --radius: 30px;
+      --max: 1180px;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: linear-gradient(120deg,#f8fbff,#eef7ff);
-}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(34,211,238,0.10), transparent 22%),
+        radial-gradient(circle at 90% 10%, rgba(124,58,237,0.10), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x: hidden;
+    }
 
-.container {
-  width: 90%;
-  margin: auto;
-}
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 60px 0;
-  gap: 40px;
-}
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(244,248,252,0.78);
+      border-bottom: 1px solid var(--line);
+    }
 
-h1 {
-  font-size: 48px;
-}
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
 
-.gradient {
-  color: purple;
-}
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
 
-.btn {
-  padding: 10px 20px;
-  background: purple;
-  color: white;
-  border-radius: 8px;
-  display: inline-block;
-  margin-right: 10px;
-}
+    .brand span,
+    .gradient-text {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
 
-/* CONTROL PANEL */
-.panel {
-  background: #0b1b43;
-  color: white;
-  padding: 20px;
-  border-radius: 20px;
-}
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
 
-.screen {
-  background: white;
-  color: black;
-  padding: 20px;
-  border-radius: 10px;
-}
+    .nav-links a:hover { color: var(--purple); }
 
-.mode-btn {
-  margin-top: 10px;
-  padding: 10px;
-  background: gray;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-}
+    .hero {
+      padding: 74px 0 44px;
+    }
 
-.mode-btn.active {
-  background: purple;
-}
-</style>
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.12);
+      color: var(--purple);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.065em;
+      max-width: 10ch;
+    }
+
+    .lead {
+      margin: 0 0 28px;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--purple), #5b8cff);
+      color: white;
+      box-shadow: 0 14px 28px rgba(124,58,237,0.16);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.94);
+      color: var(--text);
+      border-color: rgba(15, 23, 42, 0.08);
+    }
+
+    .micro-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .micro-proof span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(15,23,42,0.08);
+    }
+
+    .cockpit-shell {
+      position: relative;
+      border-radius: 38px;
+      background: linear-gradient(145deg, var(--panel2), var(--panel));
+      box-shadow: var(--shadow);
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .cockpit-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255,255,255,0.10), transparent 25%);
+      pointer-events: none;
+    }
+
+    .cockpit-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+      position: relative;
+    }
+
+    .screen-panel,
+    .gauge-card,
+    .toggle-bank,
+    .status-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .screen-panel {
+      padding: 18px;
+    }
+
+    .screen-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.76);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .lights { display: flex; gap: 8px; }
+    .light {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+    }
+    .light.live { background: var(--lime); box-shadow: 0 0 12px rgba(132,204,22,0.55); }
+
+    .main-screen {
+      min-height: 330px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--screen), var(--screen-2));
+      border: 10px solid #06122b;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(8,26,58,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,26,58,0.06) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .screen-tag,
+    .metric-row,
+    .metric-sub,
+    .telemetry,
+    .horizon {
+      position: relative;
+      z-index: 1;
+    }
+
+    .screen-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #54657f;
+      margin-bottom: 12px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .metric-number {
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: #081a3a;
+      line-height: 0.95;
+    }
+
+    .metric-unit {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #445776;
+      margin-bottom: 8px;
+    }
+
+    .metric-sub {
+      color: #536684;
+      line-height: 1.7;
+      max-width: 28ch;
+      min-height: 3.2em;
+      margin-bottom: 18px;
+    }
+
+    .telemetry {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .telemetry span {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transform-origin: left;
+      transition: transform 0.28s ease;
+      opacity: 0.9;
+    }
+
+    .horizon {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .mini-stat {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(8,26,58,0.06);
+      border: 1px solid rgba(8,26,58,0.08);
+    }
+
+    .mini-stat .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .mini-stat strong {
+      color: #081a3a;
+      font-size: 1.02rem;
+    }
+
+    .right-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .gauge-card,
+    .status-card {
+      padding: 16px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .gauge-title,
+    .status-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.72;
+      margin-bottom: 12px;
+    }
+
+    .dial {
+      width: 132px;
+      height: 132px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: conic-gradient(var(--cyan) 0deg, var(--cyan) 210deg, rgba(255,255,255,0.10) 210deg 360deg);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .dial::before {
+      content: "";
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #091933;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .dial-value {
+      position: absolute;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .status-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .pill-green { background: rgba(132,204,22,0.16); color: #c9f27b; }
+    .pill-cyan { background: rgba(34,211,238,0.14); color: #9be8f7; }
+    .pill-amber { background: rgba(245,158,11,0.14); color: #ffd38a; }
+
+    .toggle-bank {
+      margin-top: 18px;
+      padding: 18px;
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mode-btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 18px;
+      padding: 14px 12px;
+      text-align: left;
+      font-weight: 700;
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .mode-btn small {
+      display: block;
+      color: rgba(255,255,255,0.66);
+      font-weight: 500;
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    .mode-btn:hover,
+    .mode-btn.active {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(124,58,237,0.30), rgba(34,211,238,0.18));
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .section { padding: 42px 0; }
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      margin: 0 0 24px;
+      color: var(--muted);
+      max-width: 72ch;
+      line-height: 1.75;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.76));
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 26px;
+      box-shadow: 0 20px 50px rgba(81, 109, 144, 0.10);
+    }
+
+    .impact-grid,
+    .projects-grid,
+    .contact-grid,
+    .skills-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .contact-grid { grid-template-columns: 1.15fr 0.85fr; }
+    .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+
+    .impact-card,
+    .project-card,
+    .timeline-card,
+    .contact-card {
+      padding: 22px;
+      transition: transform 0.18s ease;
+    }
+
+    .impact-card:hover,
+    .project-card:hover,
+    .timeline-card:hover,
+    .contact-card:hover { transform: translateY(-4px); }
+
+    .impact-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .skill-card {
+      padding-right: 22px;
+      border-right: 1px solid rgba(15,23,42,0.08);
+      min-height: 100%;
+    }
+
+    .skill-card:last-child { padding-right: 0; border-right: none; }
+
+    .skill-card h3,
+    .project-card h3,
+    .timeline-card h3,
+    .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
+    }
+
+    .skills-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.10);
+      color: var(--purple);
+      font-size: 0.85rem;
+    }
+
+    .timeline { display: grid; gap: 16px; }
+
+    .timeline-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .time {
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding-top: 3px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .cockpit-grid,
+      .impact-grid,
+      .projects-grid,
+      .contact-grid,
+      .skills-grid,
+      .timeline-card,
+      .toggle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-card {
+        padding-right: 0;
+        padding-bottom: 18px;
+        border-right: none;
+        border-bottom: 1px solid rgba(15,23,42,0.08);
+      }
+
+      .skill-card:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      h1 { max-width: none; }
+      .main-screen { min-height: 280px; }
+    }
+  </style>
 </head>
-
 <body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">Akshay <span>Narsipur</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<div class="container hero">
+  <main id="home">
+    <section class="hero reveal">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Revenue Operations • CPQ • Salesforce • GTM Infrastructure</div>
+          <h1>I build <span class="gradient-text">revenue systems</span> that turn chaos into control.</h1>
+          <p class="lead">
+            Revenue Operations professional with 5+ years of experience building GTM infrastructure, improving deal execution, and turning messy business needs into scalable systems, automation, and better decisions.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View Work</a>
+            <a class="btn btn-secondary" href="#contact">Contact</a>
+          </div>
+          <div class="micro-proof">
+            <span>Forecasting</span>
+            <span>CPQ</span>
+            <span>Data Quality</span>
+            <span>Pipeline Visibility</span>
+          </div>
+        </div>
 
-<div>
-<h1>I build <span class="gradient">revenue systems</span></h1>
-<p>Turning chaos into control using systems, data, and automation.</p>
+        <div class="cockpit-shell">
+          <div class="cockpit-grid">
+            <div>
+              <div class="screen-panel">
+                <div class="screen-head">
+                  <span>Revenue Cockpit</span>
+                  <div class="lights">
+                    <span class="light"></span>
+                    <span class="light live"></span>
+                    <span class="light"></span>
+                  </div>
+                </div>
+                <div class="main-screen">
+                  <div class="screen-tag" id="screenLabel">Pipeline Influence</div>
+                  <div class="metric-row">
+                    <div class="metric-number" id="metricNumber">$142M</div>
+                    <div class="metric-unit" id="metricUnit">pipeline</div>
+                  </div>
+                  <div class="metric-sub" id="metricSub">Built cleaner visibility across sales workflows and reporting to support better pipeline generation and decision-making.</div>
+                  <div class="telemetry" id="telemetry">
+                    <span style="transform:scaleX(0.92)"></span>
+                    <span style="transform:scaleX(0.75)"></span>
+                    <span style="transform:scaleX(0.96)"></span>
+                    <span style="transform:scaleX(0.68)"></span>
+                    <span style="transform:scaleX(0.86)"></span>
+                    <span style="transform:scaleX(0.74)"></span>
+                  </div>
+                  <div class="horizon">
+                    <div class="mini-stat">
+                      <div class="label" id="miniLabel1">Signal</div>
+                      <strong id="miniValue1">High intent</strong>
+                    </div>
+                    <div class="mini-stat">
+                      <div class="label" id="miniLabel2">System</div>
+                      <strong id="miniValue2">CRM + GTM</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle-bank">
+                <div class="toggle-grid">
+                  <button class="mode-btn active" data-mode="pipeline">Pipeline<small>Influence pipeline creation and visibility</small></button>
+                  <button class="mode-btn" data-mode="forecast">Forecast<small>Improve predictability and planning</small></button>
+                  <button class="mode-btn" data-mode="data">Data Quality<small>Fix mismatches and improve trust</small></button>
+                  <button class="mode-btn" data-mode="cpq">CPQ Systems<small>Streamline quoting and approvals</small></button>
+                </div>
+              </div>
+            </div>
 
-<a class="btn">View Work</a>
-<a class="btn">Contact</a>
-</div>
+            <div class="right-stack">
+              <div class="gauge-card">
+                <div class="gauge-title">System Health</div>
+                <div class="dial" id="dial">
+                  <div class="dial-value" id="dialValue">82%</div>
+                </div>
+                <div style="text-align:center; color: rgba(255,255,255,0.72); font-size: 0.92rem;" id="dialSub">Operational confidence</div>
+              </div>
 
-<div class="panel">
-<div class="screen">
-<h3 id="title">Pipeline</h3>
-<h1 id="metric">$142M</h1>
-<p id="desc">Pipeline influenced</p>
-</div>
+              <div class="status-card">
+                <div class="status-title">Flight Status</div>
+                <div class="status-list">
+                  <div class="status-row"><span id="status1Label">Data Integrity</span><span class="status-pill pill-green" id="status1Value">Stable</span></div>
+                  <div class="status-row"><span id="status2Label">Forecast Signal</span><span class="status-pill pill-cyan" id="status2Value">Tracking</span></div>
+                  <div class="status-row"><span id="status3Label">Deal Velocity</span><span class="status-pill pill-amber" id="status3Value">Optimizing</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<button class="mode-btn active" onclick="setMode('pipeline')">Pipeline</button>
-<button class="mode-btn" onclick="setMode('forecast')">Forecast</button>
-<button class="mode-btn" onclick="setMode('data')">Data</button>
-<button class="mode-btn" onclick="setMode('cpq')">CPQ</button>
+    <section id="about" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-copy">
+          I work at the intersection of revenue operations, systems, and execution. My focus is on improving how teams forecast, quote, operate, and make decisions by building cleaner processes across Salesforce, CPQ, automation, and reporting.
+        </p>
+        <div class="impact-grid">
+          <div class="glass impact-card">
+            <span class="impact-number">5+</span>
+            <div class="muted">Years across GTM systems and revenue operations</div>
+          </div>
+          <div class="glass impact-card">
+            <span class="impact-number">Cross-Functional</span>
+            <div class="muted">Working across Sales, Finance, Ops, and leadership needs</div>
+          </div>
+          <div class="glass impact-card">
+            <span class="impact-number">Data-Led</span>
+            <div class="muted">Focused on signals, cleaner reporting, and better decisions</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section id="skills" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-copy">Core strengths across revenue operations, systems, planning, and execution.</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Revenue Operations &amp; Strategy</h3>
+            <ul class="skills-list">
+              <li>Revenue Forecasting</li>
+              <li>Pipeline Management</li>
+              <li>Territory &amp; Capacity Planning</li>
+              <li>Quota Modelling</li>
+              <li>Sales Target Setting</li>
+              <li>Deal Desk &amp; Pricing Operations</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Systems &amp; Tools</h3>
+            <ul class="skills-list">
+              <li>Salesforce (Admin-level Governance)</li>
+              <li>Quote-to-Cash (CPQ)</li>
+              <li>Google Sheets (Advanced)</li>
+              <li>Clay (GTM Data Enrichment &amp; Automation)</li>
+              <li>Airtable</li>
+              <li>Make (Automation Workflows)</li>
+              <li>Outreach</li>
+              <li>ZoomInfo &amp; Apollo</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Strategy &amp; Leadership</h3>
+            <ul class="skills-list">
+              <li>GTM Systems &amp; Process Design</li>
+              <li>Deal Desk Operations</li>
+              <li>Data Analysis &amp; KPI Design</li>
+              <li>Change Management</li>
+              <li>Cross-functional Stakeholder Management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section id="projects" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Selected Work</h2>
+        <p class="section-copy">A few examples of the systems and process problems I like solving.</p>
+        <div class="projects-grid">
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>CPQ Migration Strategy</h3>
+              <div class="project-links"><a href="#">Case Study</a></div>
+            </div>
+            <p class="muted">Built the business case and planning approach for moving from Salesforce CPQ to a more scalable quoting model focused on usability, control, and scale.</p>
+            <div class="tags">
+              <span class="tag">CPQ</span>
+              <span class="tag">Salesforce</span>
+              <span class="tag">Strategy</span>
+            </div>
+          </article>
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>Data Quality Improvement</h3>
+              <div class="project-links"><a href="#">Overview</a></div>
+            </div>
+            <p class="muted">Designed a cleaner approach to identify mismatches between contact email domains and assigned accounts for better CRM trust and sales execution.</p>
+            <div class="tags">
+              <span class="tag">CRM</span>
+              <span class="tag">Data Quality</span>
+              <span class="tag">Automation</span>
+            </div>
+          </article>
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>Email Validation Workflow</h3>
+              <div class="project-links"><a href="#">Details</a></div>
+            </div>
+            <p class="muted">Supported an email verification initiative to improve data quality and downstream targeting across Salesforce and outreach workflows.</p>
+            <div class="tags">
+              <span class="tag">ZeroBounce</span>
+              <span class="tag">Outreach</span>
+              <span class="tag">Salesforce</span>
+            </div>
+          </article>
+          <article class="glass project-card">
+            <div class="project-top">
+              <h3>TAM Expansion Research</h3>
+              <div class="project-links"><a href="#">Summary</a></div>
+            </div>
+            <p class="muted">Helped identify and validate high-fit accounts using demand signals, research, and go-to-market qualification logic.</p>
+            <div class="tags">
+              <span class="tag">Research</span>
+              <span class="tag">Signals</span>
+              <span class="tag">GTM</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<script>
-function setMode(mode) {
-  const title = document.getElementById("title");
-  const metric = document.getElementById("metric");
-  const desc = document.getElementById("desc");
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-copy">A concise timeline of where I’ve built and improved systems.</p>
+        <div class="timeline">
+          <div class="glass timeline-card">
+            <div class="time">2022 — Present</div>
+            <div>
+              <h3>Sales Operations Analyst · o9 Solutions</h3>
+              <p class="muted">Supporting CPQ, Salesforce, tooling requirements, and cross-functional improvements for better revenue execution and scale.</p>
+            </div>
+          </div>
+          <div class="glass timeline-card">
+            <div class="time">Earlier Role</div>
+            <div>
+              <h3>Market Research Analyst</h3>
+              <p class="muted">Worked on account research, market analysis, and business support initiatives that informed commercial decisions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  document.querySelectorAll(".mode-btn").forEach(btn => btn.classList.remove("active"));
+    <section id="contact" class="section reveal">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="glass contact-card">
+            <h3>Let’s Connect</h3>
+            <p class="muted">Use this section for recruiters, collaborators, or anyone who wants to reach out.</p>
+            <div class="contact-list">
+              <div>Email: your.email@example.com</div>
+              <div>GitHub: github.com/akshay-narsipur</div>
+              <div>LinkedIn: linkedin.com/in/your-linkedin</div>
+            </div>
+          </div>
+          <div class="glass contact-card">
+            <h3>Portfolio Tip</h3>
+            <p class="muted">Replace the sample cockpit metrics with your real numbers around pipeline influenced, efficiency gains, forecast accuracy, or quote cycle time improvements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  if(mode === "pipeline"){
-    title.innerText="Pipeline";
-    metric.innerText="$142M";
-    desc.innerText="Pipeline influenced";
-    document.querySelectorAll(".mode-btn")[0].classList.add("active");
-  }
+  <footer>
+    Built with HTML, CSS, and JavaScript. Hosted on GitHub Pages.
+  </footer>
 
-  if(mode === "forecast"){
-    title.innerText="Forecast";
-    metric.innerText="+24%";
-    desc.innerText="Forecast accuracy";
-    document.querySelectorAll(".mode-btn")[1].classList.add("active");
-  }
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el) => observer.observe(el));
 
-  if(mode === "data"){
-    title.innerText="Data Quality";
-    metric.innerText="98%";
-    desc.innerText="Data accuracy";
-    document.querySelectorAll(".mode-btn")[2].classList.add("active");
-  }
+    const modes = {
+      pipeline: {
+        label: 'Pipeline Influence',
+        number: '$142M',
+        unit: 'pipeline',
+        sub: 'Built cleaner visibility across sales workflows and reporting to support better pipeline generation and decision-making.',
+        mini1Label: 'Signal',
+        mini1Value: 'High intent',
+        mini2Label: 'System',
+        mini2Value: 'CRM + GTM',
+        bars: [0.92, 0.75, 0.96, 0.68, 0.86, 0.74],
+        dial: '82%',
+        dialSub: 'Operational confidence',
+        status1Label: 'Data Integrity',
+        status1Value: 'Stable',
+        status1Class: 'pill-green',
+        status2Label: 'Forecast Signal',
+        status2Value: 'Tracking',
+        status2Class: 'pill-cyan',
+        status3Label: 'Deal Velocity',
+        status3Value: 'Optimizing',
+        status3Class: 'pill-amber',
+        dialColor: 'var(--cyan)',
+        dialDeg: 210
+      },
+      forecast: {
+        label: 'Forecast Accuracy',
+        number: '+24%',
+        unit: 'accuracy',
+        sub: 'Improved predictability by creating cleaner operating rhythms, better data hygiene, and stronger reporting alignment.',
+        mini1Label: 'Rhythm',
+        mini1Value: 'Weekly reviews',
+        mini2Label: 'View',
+        mini2Value: 'Cleaner forecast',
+        bars: [0.68, 0.74, 0.82, 0.88, 0.94, 0.98],
+        dial: '88%',
+        dialSub: 'Forecast confidence',
+        status1Label: 'Pipeline Inputs',
+        status1Value: 'Stable',
+        status1Class: 'pill-green',
+        status2Label: 'Inspection',
+        status2Value: 'Live',
+        status2Class: 'pill-cyan',
+        status3Label: 'Variance',
+        status3Value: 'Reduced',
+        status3Class: 'pill-amber',
+        dialColor: 'var(--lime)',
+        dialDeg: 250
+      },
+      data: {
+        label: 'Data Quality',
+        number: '98.1%',
+        unit: 'match rate',
+        sub: 'Reduced friction caused by mismatched records, duplicate logic, and poor account-contact mapping across systems.',
+        mini1Label: 'Cleanup',
+        mini1Value: 'Domain checks',
+        mini2Label: 'Outcome',
+        mini2Value: 'Higher trust',
+        bars: [0.96, 0.94, 0.99, 0.97, 0.95, 0.98],
+        dial: '96%',
+        dialSub: 'Data integrity',
+        status1Label: 'Match Logic',
+        status1Value: 'Healthy',
+        status1Class: 'pill-green',
+        status2Label: 'Duplicates',
+        status2Value: 'Controlled',
+        status2Class: 'pill-cyan',
+        status3Label: 'Coverage',
+        status3Value: 'High',
+        status3Class: 'pill-amber',
+        dialColor: 'var(--cyan)',
+        dialDeg: 300
+      },
+      cpq: {
+        label: 'CPQ Efficiency',
+        number: '-18%',
+        unit: 'cycle time',
+        sub: 'Simplified quoting and approval workflows to improve speed, reduce friction, and create a more scalable deal process.',
+        mini1Label: 'Workflow',
+        mini1Value: 'Fewer steps',
+        mini2Label: 'Impact',
+        mini2Value: 'Faster quotes',
+        bars: [0.62, 0.70, 0.78, 0.84, 0.90, 0.96],
+        dial: '84%',
+        dialSub: 'Process efficiency',
+        status1Label: 'Approvals',
+        status1Value: 'Faster',
+        status1Class: 'pill-green',
+        status2Label: 'Quote Logic',
+        status2Value: 'Aligned',
+        status2Class: 'pill-cyan',
+        status3Label: 'Cycle Time',
+        status3Value: 'Down',
+        status3Class: 'pill-amber',
+        dialColor: 'var(--amber)',
+        dialDeg: 230
+      }
+    };
 
-  if(mode === "cpq"){
-    title.innerText="CPQ";
-    metric.innerText="-18%";
-    desc.innerText="Cycle time reduction";
-    document.querySelectorAll(".mode-btn")[3].classList.add("active");
-  }
-}
-</script>
+    const modeButtons = document.querySelectorAll('.mode-btn');
+    const numberEl = document.getElementById('metricNumber');
+    const unitEl = document.getElementById('metricUnit');
+    const labelEl = document.getElementById('screenLabel');
+    const subEl = document.getElementById('metricSub');
+    const miniLabel1 = document.getElementById('miniLabel1');
+    const miniValue1 = document.getElementById('miniValue1');
+    const miniLabel2 = document.getElementById('miniLabel2');
+    const miniValue2 = document.getElementById('miniValue2');
+    const barEls = document.querySelectorAll('#telemetry span');
+    const dial = document.getElementById('dial');
+    const dialValue = document.getElementById('dialValue');
+    const dialSub = document.getElementById('dialSub');
+    const status1Label = document.getElementById('status1Label');
+    const status1Value = document.getElementById('status1Value');
+    const status2Label = document.getElementById('status2Label');
+    const status2Value = document.getElementById('status2Value');
+    const status3Label = document.getElementById('status3Label');
+    const status3Value = document.getElementById('status3Value');
 
+    function setMode(mode) {
+      const data = modes[mode];
+      labelEl.textContent = data.label;
+      numberEl.textContent = data.number;
+      unitEl.textContent = data.unit;
+      subEl.textContent = data.sub;
+      miniLabel1.textContent = data.mini1Label;
+      miniValue1.textContent = data.mini1Value;
+      miniLabel2.textContent = data.mini2Label;
+      miniValue2.textContent = data.mini2Value;
+      barEls.forEach((bar, idx) => {
+        bar.style.transform = `scaleX(${data.bars[idx] || 0.7})`;
+      });
+      dialValue.textContent = data.dial;
+      dialSub.textContent = data.dialSub;
+      dial.style.background = `conic-gradient(${data.dialColor} 0deg, ${data.dialColor} ${data.dialDeg}deg, rgba(255,255,255,0.10) ${data.dialDeg}deg 360deg)`;
+
+      status1Label.textContent = data.status1Label;
+      status1Value.textContent = data.status1Value;
+      status1Value.className = `status-pill ${data.status1Class}`;
+      status2Label.textContent = data.status2Label;
+      status2Value.textContent = data.status2Value;
+      status2Value.className = `status-pill ${data.status2Class}`;
+      status3Label.textContent = data.status3Label;
+      status3Value.textContent = data.status3Value;
+      status3Value.className = `status-pill ${data.status3Class}`;
+
+      modeButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.mode === mode));
+    }
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener('click', () => setMode(btn.dataset.mode));
+    });
+  </script>
 </body>
 </html>
