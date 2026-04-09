@@ -986,6 +986,7 @@
                   <button class="mode-btn project-btn active" data-project="connection" style="text-align:left;">o9 Connection Universe</button>
                   <button class="mode-btn project-btn" data-project="alerts" style="text-align:left;">Competitive Intelligence Alerts</button>
                   <button class="mode-btn project-btn" data-project="cpqdash" style="text-align:left;">CPQ Governance Dashboard</button>
+                  <button class="mode-btn project-btn" data-project="jobchange" style="text-align:left;">Job Change Alerts</button>
                 </div>
                 </div>
             </div>
@@ -1269,45 +1270,59 @@
     const projects = {
       connection: {
         title: 'o9 Connection Universe',
-        intro: 'Built a warm-introduction engine to help sellers find existing relationship paths into target accounts through o9’s internal leadership network.',
-        meta: ['LinkedIn SalesNav', 'Phantombuster', 'Salesforce', 'Looker Studio'],
+        intro: 'Warm-introduction engine using internal networks.',
+        meta: ['LinkedIn SalesNav', 'Phantombuster', 'Salesforce', 'Looker'],
         steps: [
-          { title: 'Pull leader networks', desc: 'Extract first- and second-degree connections of senior leaders.' },
-          { title: 'Clean & map contacts', desc: 'Normalize names, accounts, and relationship data for CRM use.' },
-          { title: 'Push to Salesforce', desc: 'Mark contacts as part of the Connection Universe.' },
-          { title: 'Tag internal connector', desc: 'Identify who can unlock a warm introduction.' },
-          { title: 'Search by account', desc: 'AEs/BDs query target accounts in Looker Studio.' },
-          { title: 'Start conversations', desc: 'Use warm pathways to reach prospects faster.' }
+          { title: 'Pull networks', desc: 'Extract leader connections' },
+          { title: 'Map contacts', desc: 'Clean + normalize data' },
+          { title: 'Push to CRM', desc: 'Flag connection universe' },
+          { title: 'Find connector', desc: 'Identify intro owner' },
+          { title: 'Search account', desc: 'Query in Looker' },
+          { title: 'Reach out', desc: 'Use warm paths' }
         ],
-        impacts: ['Warm intros at scale', 'Faster outreach', 'Higher response quality']
+        impacts: ['Warm intros', 'Faster outreach', 'Better conversion']
       },
       alerts: {
         title: 'Competitive Intelligence Alerts',
-        intro: 'Designed an automated signal-delivery system that pushed competitive intelligence into Slack so sellers could react faster to market and account-level changes.',
-        meta: ['Signal Sources', 'Automation', 'Slack', 'Seller Workflows'],
+        intro: 'Realtime competitor signals in Slack.',
+        meta: ['Signals', 'Automation', 'Slack'],
         steps: [
-          { title: 'Load sources', desc: 'Track competitor feeds, domains, and key topics.' },
-          { title: 'Fetch new items', desc: 'Pull newly published content on a schedule.' },
-          { title: 'De-duplicate', desc: 'Skip anything already logged or processed.' },
-          { title: 'Classify signals', desc: 'Tag competitor, topic, sentiment, and urgency.' },
-          { title: 'Route by audience', desc: 'Map alerts to AE/SE/PMM channels and owners.' },
-          { title: 'Push to Slack', desc: 'Deliver readable, actionable alerts in real time.' }
+          { title: 'Load sources', desc: 'Track feeds + domains' },
+          { title: 'Fetch', desc: 'Pull new items' },
+          { title: 'Deduplicate', desc: 'Skip repeats' },
+          { title: 'Classify', desc: 'Topic + sentiment' },
+          { title: 'Route', desc: 'Map to owners' },
+          { title: 'Push', desc: 'Send to Slack' }
         ],
-        impacts: ['Faster response time', 'Better visibility', 'Action in Slack']
+        impacts: ['Faster response', 'Better visibility', 'Action in Slack']
       },
       cpqdash: {
         title: 'CPQ Governance Dashboard',
-        intro: 'Built a governance dashboard to improve visibility into quoting behavior, discounting, approvals, and deal structure quality across CPQ workflows.',
-        meta: ['CPQ', 'Approvals', 'Discounting', 'Leadership Reporting'],
+        intro: 'Visibility into discounts, approvals, and deal quality.',
+        meta: ['CPQ', 'Governance', 'Reporting'],
         steps: [
-          { title: 'Capture quote data', desc: 'Consolidate quote, discount, and approval events.' },
-          { title: 'Apply governance logic', desc: 'Flag policy exceptions and risk patterns.' },
-          { title: 'Track approvals', desc: 'Measure bottlenecks and turnaround by stage.' },
-          { title: 'Monitor discounting', desc: 'Surface trends and outliers by team and segment.' },
-          { title: 'Build dashboard', desc: 'Create a leadership view of deal quality and control.' },
-          { title: 'Drive consistency', desc: 'Improve compliance and quoting discipline at scale.' }
+          { title: 'Capture data', desc: 'Quotes + approvals' },
+          { title: 'Apply rules', desc: 'Flag exceptions' },
+          { title: 'Track approvals', desc: 'Measure bottlenecks' },
+          { title: 'Analyze discounts', desc: 'Spot trends' },
+          { title: 'Build dashboard', desc: 'Leadership view' },
+          { title: 'Drive control', desc: 'Improve compliance' }
         ],
-        impacts: ['Better control', 'Clearer visibility', 'Scalable governance']
+        impacts: ['Transparency', 'Control', 'Scalable governance']
+      },
+      jobchange: {
+        title: 'Job Change Alerts',
+        intro: 'Track role moves to unlock new entry points and expansion.',
+        meta: ['LinkedIn', 'Salesforce', 'Data Matching'],
+        steps: [
+          { title: 'Pull data', desc: 'Bi-weekly LinkedIn export' },
+          { title: 'Clean & map', desc: 'Normalize names + accounts' },
+          { title: 'Match logic', desc: 'Name + account comparison' },
+          { title: 'Classify move', desc: 'Customer ↔ Prospect ↔ Partner' },
+          { title: 'Flag promotion', desc: 'Same company, new title' },
+          { title: 'Enable outreach', desc: 'Context-driven messaging' }
+        ],
+        impacts: ['New entry points', 'Expansion signals', 'Targeted outreach']
       }
     };
 
