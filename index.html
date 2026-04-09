@@ -888,7 +888,7 @@
     <div class="container nav-inner">
       <a href="#home" class="brand">Akshay <span>Narsipur</span></a>
       <div class="nav-links">
-        <a href="#skills">Skills</a>
+        <a href="#skills" id="skillsNavLink">Skills</a>
         <a href="#experience" id="experienceNavLink">Experience</a>
         <a href="#contact">Contact</a>
       </div>
@@ -1053,6 +1053,18 @@
           </div>
         </div>
 
+        </div>
+    </div>
+
+    <div class="project-modal" id="skillsModal" aria-hidden="true">
+      <div class="project-modal-card">
+        <div class="project-modal-top">
+          <div>
+            <h3 class="project-modal-title">Skills</h3>
+            <div class="project-modal-copy">Core strengths across revenue operations, systems, tools, and leadership.</div>
+          </div>
+          <button class="project-close" id="skillsClose" aria-label="Close">×</button>
+        </div>
         <div class="skills-modal-grid">
           <div class="skills-modal-card">
             <h4>Revenue Operations &amp; Strategy</h4>
@@ -1214,6 +1226,9 @@
     const dialValue = document.getElementById('dialValue');
     const dialSub = document.getElementById('dialSub');
     const projectButtons = document.querySelectorAll('.project-btn');
+    const skillsNavLink = document.getElementById('skillsNavLink');
+    const skillsModal = document.getElementById('skillsModal');
+    const skillsClose = document.getElementById('skillsClose');
     const experienceNavLink = document.getElementById('experienceNavLink');
     const experienceModal = document.getElementById('experienceModal');
     const experienceClose = document.getElementById('experienceClose');
@@ -1352,6 +1367,26 @@
         projectModal.setAttribute('aria-hidden', 'true');
         experienceModal.classList.remove('open');
         experienceModal.setAttribute('aria-hidden', 'true');
+        skillsModal.classList.remove('open');
+        skillsModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    skillsNavLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      skillsModal.classList.add('open');
+      skillsModal.setAttribute('aria-hidden', 'false');
+    });
+
+    skillsClose.addEventListener('click', () => {
+      skillsModal.classList.remove('open');
+      skillsModal.setAttribute('aria-hidden', 'true');
+    });
+
+    skillsModal.addEventListener('click', (e) => {
+      if (e.target === skillsModal) {
+        skillsModal.classList.remove('open');
+        skillsModal.setAttribute('aria-hidden', 'true');
       }
     });
 
