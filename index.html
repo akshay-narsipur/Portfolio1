@@ -636,17 +636,15 @@
     .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .compact-impact-grid { gap: 14px; }
     .compact-impact-card { padding: 18px; min-height: auto; }
-    .compact-impact-grid { gap: 14px; }
-    .compact-impact-card { padding: 18px; min-height: auto; }
     .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .contact-grid { grid-template-columns: 1..impact-card,
-    .project-card,
-    .timeline-card,
-    .contact-card {
-      padding: 18px;; }
+    .contact-grid { grid-template-columns: 1.15fr 0.85fr; }
+    .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 
     .impact-card,
     .project-card,
+    .timeline-card,
+    .contact-card {
+      padding: 18px;
       transition: transform 0.18s ease;
     }
 
@@ -819,7 +817,9 @@
 
     @media (max-width: 980px) {
       .hero-grid,
-      .cockpit-     .projects-grid,
+      .cockpit-grid,
+      .impact-grid,
+      .projects-grid,
       .contact-grid,
       .skills-grid,
       .timeline-card,
@@ -972,7 +972,9 @@
       </div>
     </div>
       </div>
-  <section id="about" class="section reveal">
+    </div>
+
+    <section id="about" class="section reveal">
       <div class="container">
         <h2 class="section-title">About Me</h2>
         <p class="section-copy">
@@ -995,118 +997,7 @@
       </div>
     </section>
 
-    <section id="skills" class="section reveal">on-copy">
-          I work at the intersection of revenue operations, systems, and execution. My focus is on improving how teams forecast, quote, operate, and make decisions by building cleaner processes across Salesforce, CPQ, automation, and reporting.
-        </p>
-        <div class="impact-grid">
-          <div class="glass impact-card">
-            <span class="impact-number">5+</span>
-            <div class="muted">Years across GTM systems and revenue operations</div>
-          </div>
-          <div class="glass impact-card">
-            <span class="impact-number">Cross-Functional</span>
-            <div class="muted">Working across Sales, Finance, Ops, and leadership needs</div>
-          </div>
-          <div class="glass impact-card">
-            <span class="impact-number">Data-Led</span>
-            <div class="muted">Focused on signals, cleaner reporting, and better decisions</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <p class="section-copy">Core strengths across revenue operations, systems, planning, and execution.</p>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h3>Revenue Operations &amp; Strategy</h3>
-            <ul class="skills-list">
-              <li>Revenue Forecasting</li>
-              <li>Pipeline Management</li>
-              <li>Territory &amp; Capacity Planning</li>
-              <li>Quota Modelling</li>
-              <li>Sales Target Setting</li>
-              <li>Deal Desk &amp; Pricing Operations</li>
-            </ul>
-          </div>
-          <div class="skill-card">
-            <h3>Systems &amp; Tools</h3>
-            <ul class="skills-list">
-              <li>Salesforce (Admin-level Governance)</li>
-              <li>Quote-to-Cash (CPQ)</li>
-              <li>Google Sheets (Advanced)</li>
-              <li>Clay (GTM Data Enrichment &amp; Automation)</li>
-              <li>Airtable</li>
-              <li>Make (Automation Workflows)</li>
-              <li>Outreach</li>
-              <li>ZoomInfo &amp; Apollo</li>
-            </ul>
-          </div>
-          <div class="skill-card">
-            <h3>Strategy &amp; Leadership</h3>
-            <ul class="skills-list">
-              <li>GTM Systems &amp; Process Design</li>
-              <li>Deal Desk Operations</li>
-              <li>Data Analysis &amp; KPI Design</li>
-              <li>Change Management</li>
-              <li>Cross-functional Stakeholder Management</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     
-
-    <section id="experience" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <p class="section-copy">A concise timeline of where I’ve built and improved systems.</p>
-        <div class="timeline">
-          <div class="glass timeline-card">
-            <div class="time">2022 — Present</div>
-            <div>
-              <h3>Sales Operations Analyst · o9 Solutions</h3>
-              <p class="muted">Supporting CPQ, Salesforce, tooling requirements, and cross-functional improvements for better revenue execution and scale.</p>
-            </div>
-          </div>
-          <div class="glass timeline-card">
-            <div class="time">Earlier Role</div>
-            <div>
-              <h3>Market Research Analyst</h3>
-              <p class="muted">Worked on account research, market analysis, and business support initiatives that informed commercial decisions.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section reveal">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="glass contact-card">
-            <h3>Let’s Connect</h3>
-            <p class="muted">Use this section for recruiters, collaborators, or anyone who wants to reach out.</p>
-            <div class="contact-list">
-              <div>Email: your.email@example.com</div>
-              <div>GitHub: github.com/akshay-narsipur</div>
-              <div>LinkedIn: linkedin.com/in/your-linkedin</div>
-            </div>
-          </div>
-          <div class="glass contact-card">
-            <h3>Portfolio Tip</h3>
-            <p class="muted">Replace the sample cockpit metrics with your real numbers around pipeline influenced, efficiency gains, forecast accuracy, or quote cycle time improvements.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    Built with HTML, CSS, and JavaScript. Hosted on GitHub Pages.
-  </footer>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
